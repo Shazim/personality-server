@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   scope module: :api, path: 'api' do
     scope module: :v1, path: 'v1' do
+      resources :questions, only: [:index]
     end
   end
 end

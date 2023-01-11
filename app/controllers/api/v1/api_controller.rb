@@ -3,8 +3,7 @@ require 'api_error_handler'
 module Api
   module V1
     class ApiController < ActionController::API
-      respond_to :json
-      helper ApplicationHelper
+      before_action :doorkeeper_authorize!
 
       include Response
       include CustomException

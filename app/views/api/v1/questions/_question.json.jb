@@ -1,0 +1,7 @@
+{
+  id: question.id,
+  question_text: question.question_text,
+  created_at: question.created_at,
+  updated_at: question.updated_at,
+  answers: (render partial: 'answer', collection: question.answers, as: :answer)
+}

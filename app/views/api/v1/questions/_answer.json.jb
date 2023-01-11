@@ -1,0 +1,5 @@
+{
+  id: answer.id,
+  answer_text: answer.answer_text,
+  point: answer.point,
+}
