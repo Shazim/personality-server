@@ -46,6 +46,8 @@ gem "dotenv-rails", groups: %i[development test]
 
 gem "devise"
 gem "doorkeeper"
+gem "rspec-rails"
+gem "rswag"
 
 # Use Sass to process CSS
 # gem "sassc-rails"

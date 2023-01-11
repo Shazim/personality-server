@@ -1,9 +1,18 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
 
-  devise_for :users
-  use_doorkeeper
-  
-  # Defines the root path route ("/")
-  # root "articles#index"
+  scope '/api' do
+    scope '/v1' do
+      use_doorkeeper
+      devise_for :users, controllers: {
+        registrations: 'api/v1/users/registrations',
+      }
+    end
+  end
+
+  scope module: :api, path: 'api' do
+    scope module: :v1, path: 'v1' do
+    end
+  end
 end

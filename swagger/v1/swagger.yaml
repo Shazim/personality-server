@@ -1,0 +1,86 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+consumes:
+- application/json
+produces:
+- application/json
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    bearer:
+      type: bearer
+      name: Authorization
+      in: header
+security:
+  bearerAuth: []
+paths:
+  "/api/v1/users":
+    post:
+      summary: Signup
+      tags:
+      - Authentication
+      parameters: []
+      responses:
+        '200':
+          description: Sign up
+        '422':
+          description: Invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+                    password_confirmation:
+                      type: string
+                  required:
+                  - email
+                  - password
+                  - password_confirmation
+  "/api/v1/oauth/token":
+    post:
+      summary: Login
+      tags:
+      - Authentication
+      security: []
+      parameters: []
+      responses:
+        '200':
+          description: Login
+        '422':
+          description: Invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                grant_type:
+                  type: string
+                  example: password
+              required:
+              - email
+              - password
+              - grant_type
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000
