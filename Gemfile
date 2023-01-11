@@ -48,6 +48,7 @@ gem "devise"
 gem "doorkeeper"
 gem "rspec-rails"
 gem "rswag"
+gem "faker"
 
 # Use Sass to process CSS
 # gem "sassc-rails"
