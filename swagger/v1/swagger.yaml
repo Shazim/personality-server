@@ -25,6 +25,7 @@ paths:
       summary: Signup
       tags:
       - Authentication
+      security: []
       parameters: []
       responses:
         '200':
@@ -79,6 +80,50 @@ paths:
               - email
               - password
               - grant_type
+  "/api/v1/questions":
+    get:
+      summary: Get All Questions
+      tags:
+      - Questionnaire
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: List Found
+        '422':
+          description: Invalid request
+  "/api/v1/attempts":
+    post:
+      summary: Attempt Questionnaire
+      tags:
+      - Questionnaire
+      security:
+      - bearerAuth: []
+      parameters: []
+      responses:
+        '200':
+          description: Attempted
+        '422':
+          description: Invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                answers:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      question_id:
+                        type: integer
+                      answer_text:
+                        type: string
+                      points:
+                        type: integer
+                      total_points:
+                        type: integer
 servers:
 - url: http://{defaultHost}
   variables:

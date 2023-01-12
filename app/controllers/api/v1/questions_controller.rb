@@ -1,8 +1,6 @@
 module Api
   module V1
-    class QuestionsController < ApiController
-      skip_before_action :doorkeeper_authorize!
-      
+    class QuestionsController < ApiController      
       def index
         @questions = Question.includes(:answers).all
       end
