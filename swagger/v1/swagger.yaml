@@ -4,9 +4,9 @@ info:
   title: API V1
   version: v1
 consumes:
-- application/json
+  - application/json
 produces:
-- application/json
+  - application/json
 components:
   securitySchemes:
     bearerAuth:
@@ -24,13 +24,13 @@ paths:
     post:
       summary: Signup
       tags:
-      - Authentication
+        - Authentication
       security: []
       parameters: []
       responses:
-        '200':
+        "200":
           description: Sign up
-        '422':
+        "422":
           description: Invalid request
       requestBody:
         content:
@@ -48,20 +48,20 @@ paths:
                     password_confirmation:
                       type: string
                   required:
-                  - email
-                  - password
-                  - password_confirmation
+                    - email
+                    - password
+                    - password_confirmation
   "/api/v1/oauth/token":
     post:
       summary: Login
       tags:
-      - Authentication
+        - Authentication
       security: []
       parameters: []
       responses:
-        '200':
+        "200":
           description: Login
-        '422':
+        "422":
           description: Invalid request
       requestBody:
         content:
@@ -77,33 +77,33 @@ paths:
                   type: string
                   example: password
               required:
-              - email
-              - password
-              - grant_type
+                - email
+                - password
+                - grant_type
   "/api/v1/questions":
     get:
       summary: Get All Questions
       tags:
-      - Questionnaire
+        - Questionnaire
       security:
-      - bearerAuth: []
+        - bearerAuth: []
       responses:
-        '200':
+        "200":
           description: List Found
-        '422':
+        "422":
           description: Invalid request
   "/api/v1/attempts":
     post:
       summary: Attempt Questionnaire
       tags:
-      - Questionnaire
+        - Questionnaire
       security:
-      - bearerAuth: []
+        - bearerAuth: []
       parameters: []
       responses:
-        '200':
+        "200":
           description: Attempted
-        '422':
+        "422":
           description: Invalid request
       requestBody:
         content:
@@ -118,12 +118,12 @@ paths:
                     properties:
                       question_id:
                         type: integer
-                      answer_text:
-                        type: string
+                      answer_id:
+                        type: integer
                       points:
                         type: integer
                       total_points:
                         type: integer
 servers:
-- url: http://localhost:3000
-- url: https://personality-server.herokuapp.com
+  - url: http://localhost:3000
+  - url: https://personality-server.herokuapp.com

@@ -39,7 +39,7 @@ describe 'Questions' do
                         type: :object,
                         properties: {
                           question_id: { type: :integer },
-                          answer_text: { type: :string },
+                          answer_id: { type: :integer },
                           points: { type: :integer },
                           total_points: { type: :integer },
                         },
