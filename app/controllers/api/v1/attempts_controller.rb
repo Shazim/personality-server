@@ -25,6 +25,7 @@ module Api
         when 67..100 then 'You are an Extrovert'
         else 'Something wrong with your personality'
         end
+      end
     end
   end
 end
