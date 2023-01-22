@@ -1,24 +1,7 @@
-# README
+# Important Note (THIS PROJECT CONTAINS TWO REPOSITORIES)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Personality Test Project
 
-Things you may want to cover:
+### [Front-end (React JS)](https://github.com/Shazim/personality-client)
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### [Back-end (Ruby on Rails)](https://github.com/Shazim/personality-server)
