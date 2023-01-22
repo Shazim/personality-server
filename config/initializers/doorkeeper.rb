@@ -505,3 +505,7 @@ Doorkeeper.configure do
   #
   # realm "Doorkeeper"
 end
+
+Rails.application.config.to_prepare do
+  Doorkeeper::OAuth::ErrorResponse.send :prepend, CustomTokenErrorResponse
+end

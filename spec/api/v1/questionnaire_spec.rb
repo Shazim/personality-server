@@ -2,6 +2,10 @@
 
 require('swagger_helper')
 describe 'Questions' do
+  let(:user) { create(:user) }
+  let(:token) { Doorkeeper::AccessToken.create({resource_owner_id: user.id}).token }
+  let(:fake_token) { 'fake_token' }
+
   path '/api/v1/questions' do
     get 'Get All Questions' do
       tags 'Questionnaire'
@@ -11,10 +15,12 @@ describe 'Questions' do
       produces 'application/json'
       
       response '200', 'List Found' do
+        let(:Authorization) { "Bearer #{token}" }
         run_test!
       end
 
-      response '422', 'Invalid request' do
+      response '401', 'Invalid request' do
+        let(:Authorization) { "Bearer #{fake_token}" }
         run_test!
       end
     end
@@ -49,10 +55,14 @@ describe 'Questions' do
                 }
       
       response '200', 'Attempted' do
+        let(:Authorization) { "Bearer #{token}" }
+        let(:attempt) { {answers: []} }
         run_test!
       end
 
-      response '422', 'Invalid request' do
+      response '401', 'Invalid request' do
+        let(:Authorization) { "Bearer #{fake_token}" }
+        let(:attempt) { {answers: []} }
         run_test!
       end
     end

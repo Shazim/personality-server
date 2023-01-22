@@ -28,10 +28,12 @@ describe 'Authentication' do
                 }
 
       response '200', 'Sign up' do
+        let(:user) {{user: {email: 'user1@example.com', password: 123456, password_confirmation: 123456}}}
         run_test!
       end
 
       response '422', 'Invalid request' do
+        let(:user) { {user: {}}}
         run_test!
       end
     end
@@ -57,11 +59,13 @@ describe 'Authentication' do
                 }
 
       response '200', 'Login' do
-        let(:Authorization) { "Bearer #{generate_token}" }
+        let(:created_user) { create(:user) }
+        let(:user) {{email: created_user.email, password: created_user.password, grant_type: 'password'}}
         run_test!
       end
 
-      response '422', 'Invalid request' do
+      response '401', 'Invalid request' do
+        let(:user) {{email: 'random@email.com', password: '123456', grant_type: 'password'}}
         run_test!
       end
     end
